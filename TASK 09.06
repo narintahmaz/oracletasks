@@ -1,0 +1,82 @@
+Task 09.06
+Set 1
+
+2 )Create table employees_copy as  select *  from employees
+Select *  from employees_copy 
+Insert into employees_copy  (first_name, last_name ,email ,hire_date)
+Values ('Jhon ','Doe','jdoe@mail.com','15-JAN-2022');
+DESC  employees_copy 
+Alter  table employees_copy modify job_id null
+
+3)  SELECT * FROM employees  WHERE to_char(hire_date, 'mon')>'01-JAN-2020'
+
+4) SELECT INITCAP (job_title) from jobs
+5) Select first_name ,last_name, department_name  from employees e join departments d  on e.department_id=d.department_id
+
+Set 2
+
+1 ) Alter TABLE Employee_Details 
+     ADD Salary number
+
+2) UPDATE  employees_copy 
+SET COMMISSION_PCT=0.2 
+WHERE JOB_ID='SA _REP'; 
+
+3) SELECT AVG(SALARY) AS AverageSalary
+FROM Employees;
+
+
+
+4  ) SELECT  first_name ,last_name  ,hire_date, EXTRACT(YEAR FROM SYSDATE) - EXTRACT(YEAR FROM hire_date) AS number_of_years
+FROM Employees;
+
+5) SELECT e.first_name, d.department_name
+FROM employees e
+LEFT JOIN departments d ON e.department_id = d.department_id;
+
+Set3
+ 1 ) CREATE TABLE Project_Details 
+(Project_ID NUMBER ,
+Project_Name VARCHAR(50) ,
+Start_Date DATE ,
+End_Date DATE,
+Manager_ID NUMBER
+)
+
+2) DELETE FROM employees_copy
+WHERE first_name = 'John' AND last_name = 'Doe';
+
+3) Select first_name ,last_name , hire_date  from employees Order by  hire_date desc
+4) ---
+
+5) Select first_name, department_name  FROM employees e right join departments d ON e.department_id =d.department_id
+
+
+
+SET 4
+
+1)	Alter TABLE Project_Details
+      ADD Project_Status varchar(50)
+
+2 ) UPDATE Project_Details
+SET Project_Status = 'Completed'
+WHERE End_Date < CURRENT_DATE
+3)Select first_name from  employees  where Salary >( Select AVG(SALARY )FROM EMPLOYEES)
+
+4) SELECT  TO_CHAR (hire_date,'DD-MON-YYYY')from employees
+
+5) Select  first_name,last_name,department_name from employees e full join departments d  on e.department_id = d.department_id 
+
+SET 5
+
+1)	DROP TABLE Project_Details
+2)	---
+3)	  SELECT job_id, COUNT(FIRST_NAME) AS employee_count
+          FROM Employees GROUP BY job_id;
+4)	 Select employee_id ,last_name,department_id,salary,rank() over(partition by department_id order by salary) from employees
+      
+
+
+ 5) Select job_id  from jobs 
+  union
+select job_id  from job_history
