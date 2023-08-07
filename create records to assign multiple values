@@ -1,0 +1,8 @@
+declare 
+r_emp employees%rowtype;
+ begin 
+   select * into r_emp from employees where  employee_id=101 ;
+   dbms_output.put_line(r_emp.first_name || ' ' || r_emp.last_name || ' earns ' || r_emp.salary || ' and hired  date' || r_emp.hire_date );
+
+   
+ end ;
