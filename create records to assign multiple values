@@ -6,3 +6,18 @@ r_emp employees%rowtype;
 
    
  end ;
+
+
+ declare 
+ type typ_emp is record (first_name varchar(50),last_name employees.last_name%type,salary employees.salary%type,hire_date date );
+ 
+ r_emp typ_emp;
+ begin
+ r_emp.first_name:='Alex';
+ r_emp.last_name:='Frexil';
+ r_emp.salary:=3000;
+ r_emp.hire_date:='23/05/2023';
+ dbms_output.put_line(r_emp.first_name || ' ' || r_emp.last_name || ' earns ' || r_emp.salary || ' and hired  date' || r_emp.hire_date );
+ 
+ 
+ end ;
