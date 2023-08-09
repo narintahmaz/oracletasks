@@ -1,0 +1,22 @@
+
+
+ declare  
+ 
+ type emp_list is table of varchar2(50);
+  emps emp_list := emp_list();
+  idx pls_integer :=1;  
+  
+ begin
+ for i in 100..110 loop
+ emps.extend ;
+ 
+ select first_name into emps(idx) from employees where employee_id= i;
+ idx := idx+1;
+ end loop;
+ 
+ for x in  1..emps.count() loop 
+ dbms_output.put_line (emps(x));
+ end loop ;
+ 
+  end;
+ 
