@@ -19,4 +19,65 @@
  end loop ;
  
   end;
+
+Result 
+Steven
+Neena
+Lex
+Alexander
+Bruce
+David
+Valli
+Diana
+Nancy
+Daniel
+John
+
+
+PL/SQL procedure successfully completed.
+Əgər burdan hərn hansı sətiri  silmək istəsəm .Məsələn 3 cü səri yəni Lex i silirəm 
+
  
+ declare  
+ 
+ type emp_list is table of varchar2(50);
+  emps emp_list := emp_list();
+  idx pls_integer :=1;  
+  
+ begin
+ for i in 100..110 loop
+ emps.extend ;
+ 
+ select first_name into emps(idx) from employees where employee_id= i;
+ idx := idx+1;
+ end loop;
+emps.delete(3);
+ 
+ for x in  1..emps.count() loop 
+ if emps.exists(x) then
+ dbms_output.put_line (emps(x));
+ end if;
+ end loop ;
+
+  end;
+ Bu koda delet əmrii əlavə etdikdən sonra  for loopun işərisində if də əlavə etdimki mövcud olduqda cavab qaytarsın .Əgər if yazmasam error verəcək Çünki yuxarıda həm 3 silmək istəyirik 
+lakin daha  sonra for loopu  ilə ona çatmağa çalışırıq.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
