@@ -1,0 +1,15 @@
+declare 
+type ref_emps is ref CURSOR return employees%rowtype;
+c_emps ref_emps ;
+r_emps employees%rowtype;
+begin
+open c_emps for select * from employees;
+loop 
+fetch c_emps into r_emps ;
+exit when c_emps%notfound;
+dbms_output.put_line(r_emps.first_name || '  '||r_emps.last_name);
+
+end loop ;
+close c_emps;
+end ;
+
