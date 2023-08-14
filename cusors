@@ -13,3 +13,63 @@ end loop ;
 close c_emps;
 end ;
 
+--Aşağıda employees cədvəlini eyni strukturlu retired_employees cədvəli ilə dəyişsəkdə bu kod  çalışcaq
+çünki reference curorsdan istifadə etmişəm 
+
+
+declare 
+type ref_emps is ref CURSOR return employees%rowtype;
+c_emps ref_emps ;
+r_emps employees%rowtype;
+begin
+open c_emps for select * from  retired_employees;
+loop 
+fetch c_emps into r_emps ;
+exit when c_emps%notfound;
+dbms_output.put_line(r_emps.first_name || '  '||r_emps.last_name);
+
+end loop ;
+close c_emps;
+end ;
+
+--BIR BLOK DAXİLİNDƏ  REFERANS OLUNMUŞ KURSORU 2 FƏRQLİ SORĞU İLƏ İSTİFADƏ EDƏ BİLƏRİK 
+
+declare 
+type ref_emps is ref CURSOR return employees%rowtype;
+c_emps ref_emps ;
+r_emps employees%rowtype;
+begin
+open c_emps for select * from retired_employees ;
+loop 
+fetch c_emps into r_emps ;
+exit when c_emps%notfound;
+dbms_output.put_line(r_emps.first_name || '  '||r_emps.last_name);
+
+end loop ;
+close c_emps;
+
+dbms_output.put_line('------------------');
+ 
+ open c_emps for select * from  employees where job_id='IT_PROG' ;
+loop 
+fetch c_emps into r_emps ;
+exit when c_emps%notfound;
+dbms_output.put_line(r_emps.first_name || '  '||r_emps.last_name);
+
+end loop ;
+close c_emps;
+
+end ;
+
+
+
+
+
+
+
+
+
+
+
+
+
