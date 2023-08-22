@@ -1,0 +1,9 @@
+ 
+   
+   Select 
+   MIN(ID)  AS START_RANGE ,
+   MAX(ID)AS END_RANGE FROM
+    (SELECT ID ,ROWNUM , ID-ROWNUM AS FERQ from tabnum1)
+    group by FERQ
+    order by FERQ
+   
