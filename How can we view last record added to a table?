@@ -1,0 +1,1 @@
+ Select * from (select * from employees order by rownum desc) where rownum<2
