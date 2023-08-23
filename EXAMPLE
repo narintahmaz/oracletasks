@@ -6,4 +6,20 @@
     (SELECT ID ,ROWNUM , ID-ROWNUM AS FERQ from tabnum1)
     group by FERQ
     order by FERQ
-   
+
+
+
+
+EXAMPLE 2
+select ichchi_mudir.department_id,
+ichchi_mudir.ischi,
+ichchi_mudir.mudir
+maxsalary.salary 
+from  ( select emp.department_id  ,
+        emp.last_name as ischi ,
+        man.last_name as  mudir 
+    from employees emp ,employees man 
+    where emp.manager_id=man.employee) ichchi_mudir 
+                                     
+inner join  (Select  department_id , max (salary) as salary from employees group by department_id ) as maxsalary 
+                                     on( ichchi_mudir.department_id=maxsalary.department_id);
