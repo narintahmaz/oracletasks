@@ -1,0 +1,19 @@
+declare 
+cursor c_emps is select * from employees ;
+v_emps c_emps%rowtype;
+procedure fetch_data_proc as
+
+begin 
+open c_emps ;
+loop
+fetch c_emps into v_emps;
+exit when c_emps%notfound;
+dbms_output.put_line(v_emps.first_name);
+end loop ;
+close c_emps;
+
+end;
+
+begin 
+fetch_data_proc;
+end;
