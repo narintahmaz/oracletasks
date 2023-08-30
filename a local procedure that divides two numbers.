@@ -1,0 +1,19 @@
+declare 
+
+
+procedure division_number (a number ,b number ) as
+division number ;
+
+ begin
+ if b>0 then
+ division := a/b;
+ dbms_output.put_line ('bolunme islemi tamamlandi');
+ 
+ ELSIF b=0 then
+ dbms_output.put_line('0-a bolunme olmaz ');
+  END IF;
+ END  ;
+ BEGIN 
+ 
+  division_number(5,0);
+ END;
