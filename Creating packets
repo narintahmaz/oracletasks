@@ -1,0 +1,18 @@
+CREATE OR REPLACE
+PACKAGE BODY EMPS AS
+
+ PROCEDURE maaslarn_artirilması AS
+  BEGIN
+ for r1 in c_emps loop
+ update employees_copy2 set  salary= salary+v_salary_increased;
+ end loop ;
+  END maaslarn_artirilması;
+
+  function orta_emekhaqqi (p_dept_id int )return number as
+  v_avg_num number :=0;
+  BEGIN
+  select avg(salary ) into v_avg_num from employees_copy2 where department_id=p_dept_id;
+ RETURN v_avg_num ;
+  END orta_emekhaqqi;
+
+END EMPS;
