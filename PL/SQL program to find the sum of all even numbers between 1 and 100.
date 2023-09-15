@@ -1,0 +1,15 @@
+DECLARE
+   total_sum NUMBER := 0;
+BEGIN
+   -- Loop through numbers from 1 to 100
+   FOR i IN 1..100 LOOP
+      -- Check if the number is even
+      IF MOD(i, 2) = 0 THEN
+         -- Add the even number to the total sum
+         total_sum := total_sum + i;
+      END IF;
+   END LOOP;
+
+   -- Display the total sum of even numbers
+   DBMS_OUTPUT.PUT_LINE('The sum of even numbers between 1 and 100 is: ' || total_sum);
+END;
