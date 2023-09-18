@@ -1,0 +1,10 @@
+--WE CAN USE FOR  DELETE ,UPDATE ,INSERT 
+create or replace trigger before_row_emp_cpy
+before insert or update or delete on employees_copy2
+for each row
+begin
+  dbms_output.put_line('Before Row  Trigger is Fired!.');
+  dbms_output.put_line('THE SALARY OF EMPLOYEE' || :old.employee_id || '-->BEFORE:' || :old.salary || 'AFTER:' || :new.salary);
+end;
+
+
