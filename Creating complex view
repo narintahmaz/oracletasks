@@ -1,0 +1,4 @@
+create view v_complex (DNAME, MIN_SAL, MAX_SAl)as 
+select department_name ,min(salary),max(salary) from employees join departments d 
+ USING(department_id)
+GROUP BY department_name;
