@@ -1,0 +1,34 @@
+declare 
+type t_edu is record (high_school varchar2(50),
+            university varchar2(50),
+            graduate_date date );
+            
+type t_emp is record (first_name employees.first_name%type,
+            last_name employees.last_name%type,
+            salary employees.salary%type NOT NULL DEFAULT 1000,
+            hire_date date,
+            dept_id employees.department_id%type,
+            department departments%rowtype --inner record ,
+            education t_edu);
+
+r_emp t_emp;
+begin
+select first_name,last_name,salary,hire_date,department_id into r_emp.first_name,r_emp.last_name,r_emp.salary,r_emp.hire_date,r_emp.dept_id 
+from employees where employee_id= 146;
+
+--inner recordun içərisinə select sorğusunda data daxil edə bilərik .
+select * into r_emp.department from departments where department_id=r_emp.dept_id;
+
+--education dəyişəni  üçün bir cəvəl olmadığından bu inner recorduda özümüz əl ilə dəyər daxil edirik.
+r_emp.education.high_school :='BEVERY HILLS';
+r_emp.education.university:='OXFORD';
+r_emp.education.graduate_date:='01-JAN-2013';
+
+dbms_output.put_line(r_emp.first_name||' '||r_emp.last_name|| ' earns  '||r_emp.salary ||  ' USD   and hire date is '|| r_emp.hire_date);
+dbms_output.put_line('SHE IS WORKING IN '|| r_emp.department.department_name);
+dbms_output.put_line('SHE GRADUATE '|| r_emp.education.graduate_date   || 'from '|| r_emp.education.university);
+
+
+
+
+end;
