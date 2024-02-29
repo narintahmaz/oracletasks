@@ -1,1 +1,5 @@
-
+--find the employees who work in the United Kingdom
+Select first_name,last_name,salary,department_id from employees where 
+department_id IN (Select department_id from departments where location_id IN (
+Select location_id from locations where country_id=(Select country_id from countries
+where country_name='United Kingdom')))
